@@ -35,6 +35,32 @@ _LOCATIONS = 'locations'
 # the distance that determins new locations
 _EPSILON = 1
 
+
+
+
+if (os.getenv('SERVER_SOFTWARE') and
+    os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+    _DB = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME,
+                          db=_DB_NAME,
+                          user=_USER,
+                          passwd=_PSWD,
+                          charset='utf8')
+else:
+    _DB = MySQLdb.connect(host='127.0.0.1',
+                          port=3306,
+                          db=_DB_NAME,
+                          user=_USER,
+                          charset='utf8')
+
+    # Alternatively, connect to a Google Cloud SQL instance using:
+    # _DB = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user=_USER, charset='utf8')
+
+
+
+
+
+
+
 # Import the Flask Framework
 from flask import Flask, request
 app = Flask(__name__)

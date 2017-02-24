@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Mobile Byte Tutorial</title>
+    <title>Track My Life</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,21 +59,31 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-	<h1>Data Pipeline Project Mobile Byte Example</h1>
-        <p>This is the Mobile Byte of the Data Pipeline class.</p>
+	<h1>Exploring Mobile Data </h1>
+        <p>Yilin Ying</p>
       </div>
+  <h2> 1. Introduction </h2>
+  <h2> 2. Where Do I Go? </h2>
+   <h3>2.1. My Oscillation of Life </h3>
+   <p> The two maps below separately show how my latitude and longitude change over time. 
+   According to the map, there is a daily wave in weekdays. That is because I go to CMU every day for school. 
+   CMU is famous for its high workload. Thus, my life is quite a "home, school" routine --- but still enjoyable. 
+   In weekends, I love to walk around my house or sleep at home, but seldom go to school. 
+   Since I don't have a car, it is not very easy to travel far away.
+   Because of that, my activity diameter for weekends is really small.  </p>
+   <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?viz=GVIZ&amp;t=TIMELINE&amp;gco_displayAnnotations=true&amp;gco_wmode=opaque&amp;containerId=googft-gviz-canvas&amp;rmax=250&amp;q=select+col1%2C+col5+from+1YkySVOwMiHNupWRgpKJpdj-YmzZWmpIjrgNc73U2&amp;qrs=+where+col1+%3E%3D+&amp;qre=+and+col1+%3C%3D+&amp;qe=+order+by+col1+asc&amp;att=true&amp;width=500&amp;height=285"></iframe>   
+   <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?viz=GVIZ&amp;t=TIMELINE&amp;gco_displayAnnotations=true&amp;gco_wmode=opaque&amp;containerId=googft-gviz-canvas&amp;rmax=250&amp;q=select+col1%2C+col6+from+1YkySVOwMiHNupWRgpKJpdj-YmzZWmpIjrgNc73U2&amp;qrs=+where+col1+%3E%3D+&amp;qre=+and+col1+%3C%3D+&amp;qe=+order+by+col1+asc&amp;width=500&amp;height=300"></iframe>
+   <h3> 2.2. Track Me in a Map </h3>
+   <p>Below are showing my traces in maps. According to the heat map, the two places that I appear most frequently are CMU and my house in Greenfield.
+   I take 61C or 61D for school every day. Because of that, there is a trace on Murray and Forves Avenue overlapping the bus routes. 
+   Also, I have been to Aldi in Waterfont, a restaurant at North Craig Street, Giant Eagle near my house, Carnegie Library, etc. in the past few days.
+   These places are all shown in the maps.</p>
+   <p> In the second map, yellow dots represent my location from 0 am to 9 am. Green dots are from 9 am to 7 pm. Purple dots are from 7 pm to 0 am.
+   We can clearly see that from 9 am to 7 pm I am often at school. In other time, I am more likely to be at home.</p>
+   <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col4%2C+col5+from+1TTIu4Ltlzm1S_Cwtk317iElZZzIF7XSSeGrJLDJ1+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=40.42899911777598&amp;lng=-79.903444804699&amp;t=1&amp;z=13&amp;l=col4&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.67&amp;hmr=19&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG"></iframe>
+   <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col4+from+1TTIu4Ltlzm1S_Cwtk317iElZZzIF7XSSeGrJLDJ1&amp;viz=MAP&amp;h=false&amp;lat=40.44302124243271&amp;lng=-79.93006707027632&amp;t=1&amp;z=14&amp;l=col4"></iframe>
 
-   <h2>Query Results</h2>
-   <ul>
-   {% for item in queries %}
-   <li>Query: {{item.query}}<br>
-       {% for row in item.results %}
-          {{row}}<br>
-       {% endfor %}
-   </li>
-   {% endfor %}
-   </ul>
-   
+
    <h2>Vega-lite Chart</h2>
    
    <!-- Example of Vega-lite graph -->
@@ -118,6 +128,61 @@
 	    // result.view is the View, which resides under the '#vis' element
 	  });
   </script>
+  
+  
+  
+  
+     <h2>Noise Data</h2>
+   
+   <!-- Example of Vega-lite graph -->
+   <div id="vis2"></div>
+   <!-- Vega-lite graphing code. -->
+   <script>
+	  // Assign the specification to a local variable vlSpec.
+	  var vlSpec2 = {
+	   
+	 "data": {
+	      "values": [
+			{% for row in queries[0].results %}
+          		{"date": "{{row[0]}}", "count": {{row[1]}}},
+       		{% endfor %}
+	      ]
+	    },
+	    "mark": "bar",
+	    "encoding": {
+	      "x": {
+	      	"field": "date", "type": "nominal",
+		    "axis": {
+		        "title": "Date"
+		     }},
+	      "y": {
+	        "field": "count", "type": "quantitative",
+	        "axis": {
+	          "title": "Record Count"
+	        }
+	      }
+	    }
+	   
+	  };
+	
+	  var embedSpec2 = {
+	    mode: "vega-lite",  // Instruct Vega-Embed to use the Vega-Lite compiler
+	    spec: vlSpec2
+	    // You can add more vega-embed configuration properties here.
+	    // See https://github.com/vega/vega/wiki/Embed-Vega-Web-Components#configuration-propeties for more information.
+	  };
+	
+	  // Embed the visualization in the container with id `vis`
+	  vg.embed("#vis2", embedSpec2, function(error, result) {
+	    // Callback receiving the View instance and parsed Vega spec
+	    // result.view is the View, which resides under the '#vis' element
+	  });
+  </script>
+
+  
+  
+  
+  
 
    <div class="page-header">
 		<p> You should add information here, including some tables
