@@ -59,12 +59,26 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-	<h1>Exploring Mobile Data </h1>
-        <p>Yilin Ying</p>
+	<h1>Track My Life </h1>
+        <p>Yilin Ying's Exporation in Mobile Data</p>
+        <p> Byte 3 for Interactive Data Science </p>
       </div>
+      
+  <div class="page-header">
   <h2> 1. Introduction </h2>
+  <h3> 1.1. Project Background </h3>
+  <p>In this project, I have collected mobile data on my phone by using <a href="http://www.awareframework.com"> AWARE</a>.
+  I used google cloud platform SQL to store my data, <a href="https://www.trifacta.com/products/wrangler/">Trifacta Wrangler</a> to clean my data, 
+  finally <a herf="https://support.google.com/fusiontables/answer/2571232" > google fusion table</a> and <a href="https://plot.ly/">plotly</a> 
+  to visualize my data. I hope to learn more about myself, be more aware of my life pattern and live mindfully through this visualization project. </p>
+  <h3> 1.2. Data Description </h3> 
+  <p> My data range from 2/2/2017 to 2/23/2017. Overall, I have location data presesnted in latitude and longitude, screen status data (whether the screen is on or locked),
+  environment noise data presesnted in sound energy and battery data. Each datapoint has a seperate timestamp. With these data, 
+  I can easily track my daily activity, environment noise and phone usage by time. </p> 
+  </div>
+  <div class="page-header">
   <h2> 2. Where Do I Go? </h2>
-   In this part I visualized my location data by using google fusion table. 
+   <p>In this part I visualized my location data by using google fusion table. </p>
    <h3>2.1. My Oscillation of Life </h3>
    <p> The two maps below separately show how my latitude and longitude change over time. 
    According to the map, there is a daily wave in weekdays. That is because I go to CMU every day for school. 
@@ -84,13 +98,16 @@
    <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col4%2C+col5+from+1TTIu4Ltlzm1S_Cwtk317iElZZzIF7XSSeGrJLDJ1+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=40.42899911777598&amp;lng=-79.903444804699&amp;t=1&amp;z=13&amp;l=col4&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.67&amp;hmr=19&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG"></iframe>
    <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col4+from+1TTIu4Ltlzm1S_Cwtk317iElZZzIF7XSSeGrJLDJ1&amp;viz=MAP&amp;h=false&amp;lat=40.44302124243271&amp;lng=-79.93006707027632&amp;t=1&amp;z=14&amp;l=col4"></iframe>
 
+   </div>
+  <div class="page-header">
+
 	<h2> 3. Noise in My Life </h2>
 	<p> I also collected the sound energy data. These data can show the environment noise around me, so as to indicate when and where is often noisy or quiet for me. 
-	There are several reasons if the sound value is large: I am talking to other people; I am using my phone to play music; the environment is noisy.
-	Sadly, we cannot distinct different types of noise source from each other. This is one limitation of this visualization.</p>
+	There might be several reasons if the sound value is large: I am talking to other people; I am using my phone to play music; the environment is noisy.
+	Sadly, we cannot distinct different types of noise sources from each other. This is one limitation of this visualization.</p>
 	<h3> 3.1. When is Noisy? </h3>
-	<p> I put all the sound energy data by hours and dates in a scattered plot. The size of each point represent the volume of sound energy.
-	The larger is the point, the noisy is the environment. </p>
+	<p> I put all the sound energy data by hours and dates in a scattered plot. The size of each point represents the volume of sound energy.
+	The larger is the point, the more noisy is the environment. </p>
 	<p>According to this visualization, it is quiet in most of my bedtime -- often around 0-8 a.m. The only outlier is the day of 2/22/2017, when the whole night is noisy.
 	My guess is that probably I played music on my phone for the whole night. </p>
 	<p> Another discovery is that weekends (2/4, 2/5, 2/11, 2/18, 2/19) are often quieter than weekdays. The reason behind is possibly that I don't need to interact with other people in weekends.
@@ -103,13 +120,32 @@
 	It is probably because I need to talk to my classmates in school and talk to my roommates at home. I also have quiet study time at home or on campus.</p>
    <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/20.embed"></iframe>
    
+   </div>
+  <div class="page-header">
+   
    <h2>4. How do I Play with My Phone?</h2>
+   <p> In this part, I visualize my phone screen status and battery data to present my phone usage. </p>
    <h3> 4.1. My Phone Usage </h3>
+   <p>The graph below shows the number of action to unlock a screen for each hour over the day. 
+   AWARE can collect 4 different types screen status: screen on, screen off, lock and unlock. I choose to visualize hourly unlock number here because 
+   "unlock" shows my active usage of mobile phone. In comparison, "screen on" also happens when I shake my phone or when I receive a message, and thus may involve some noise in the result.
+    </p>
+   <p> According to the result, most of the usage happens from 9 am to 9 pm. This is general work and school time when I use my mobile phone to contact 
+   my classmates, browse news, look for information and send emails. In most days, I am not using my phone in 0-8am, 
+   because that is my general bedtime. Every day before going to bed, I need to set an alarm; after I wake up, I need to turn off the alarm.
+   Thus, the first/last usage of a day can present when I get up and when I get to sleep. An extreme example is in 2/22 when my 
+   first usage of phone happened in 2 am. That is because I slept earlier that night and then woke up at 2 and felt energetic again. </p>
+   <p> An advantage to use unlock data is to visualize how my life is interupted by mobile phone. For example, I unlocked my phone for 9 times in 10-11 am, 2/18, probably because of 
+   message, or just because I was not focusing on my work and my mind kept flying around to the mobile phone. I am so guilty that I use 
+   my phone so many times every day and so addicted to the virtural world. I should have been more focused on other aspects of life. </p>
    <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/23.embed"></iframe>
    <h3> 4.2. Battery </h3>
+   <p> The heat map shows the battery status of my phone. I usually get my phone charged once a day. An interesting fact is that the battery goes down 
+   fast if it is not charged even from 0-8 am when I am usually sleeping. The possible reason behind is that I am using AWARE to collect data. The sensors are
+    still running even when I am sleeping. </p>
    <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/28.embed"></iframe>  
    
-   
+   </div>
   
 		
 		
