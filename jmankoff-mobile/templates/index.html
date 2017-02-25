@@ -64,6 +64,7 @@
       </div>
   <h2> 1. Introduction </h2>
   <h2> 2. Where Do I Go? </h2>
+   In this part I visualized my location data by using google fusion table. 
    <h3>2.1. My Oscillation of Life </h3>
    <p> The two maps below separately show how my latitude and longitude change over time. 
    According to the map, there is a daily wave in weekdays. That is because I go to CMU every day for school. 
@@ -83,115 +84,33 @@
    <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col4%2C+col5+from+1TTIu4Ltlzm1S_Cwtk317iElZZzIF7XSSeGrJLDJ1+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=40.42899911777598&amp;lng=-79.903444804699&amp;t=1&amp;z=13&amp;l=col4&amp;y=2&amp;tmplt=2&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.67&amp;hmr=19&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG"></iframe>
    <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col4+from+1TTIu4Ltlzm1S_Cwtk317iElZZzIF7XSSeGrJLDJ1&amp;viz=MAP&amp;h=false&amp;lat=40.44302124243271&amp;lng=-79.93006707027632&amp;t=1&amp;z=14&amp;l=col4"></iframe>
 
-
-   <h2>Vega-lite Chart</h2>
+	<h2> 3. Noise in My Life </h2>
+	<p> I also collected the sound energy data. These data can show the environment noise around me, so as to indicate when and where is often noisy or quiet for me. 
+	There are several reasons if the sound value is large: I am talking to other people; I am using my phone to play music; the environment is noisy.
+	Sadly, we cannot distinct different types of noise source from each other. This is one limitation of this visualization.</p>
+	<h3> 3.1. When is Noisy? </h3>
+	<p> I put all the sound energy data by hours and dates in a scattered plot. The size of each point represent the volume of sound energy.
+	The larger is the point, the noisy is the environment. </p>
+	<p>According to this visualization, it is quiet in most of my bedtime -- often around 0-8 a.m. The only outlier is the day of 2/22/2017, when the whole night is noisy.
+	My guess is that probably I played music on my phone for the whole night. </p>
+	<p> Another discovery is that weekends (2/4, 2/5, 2/11, 2/18, 2/19) are often quieter than weekdays. The reason behind is possibly that I don't need to interact with other people in weekends.
+	As an introvert person, I feel more energetic when I am alone, but my major requires me to talk to people in group discussions or interviews.
+	Because of that, it is really helpful to have a quiet weekend each week to get my energy back.</p>
+	<iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/5.embed"></iframe>
+	<h3> 3.2. Where is Noisy? </h3>
+	<p>In this graph, I put the Noise Plot under latitude and longitude. With this graph we can see where is generally noisy or quiet in my life.
+	The two clusters in the plot is CMU (upper left) and my home (lower right). There are noisy dots in both CMU and my home. 
+	It is probably because I need to talk to my classmates in school and talk to my roommates at home. I also have quiet study time at home or on campus.</p>
+   <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/20.embed"></iframe>
    
-   <!-- Example of Vega-lite graph -->
-   <div id="vis"></div>
-   <!-- Vega-lite graphing code. -->
-   <script>
-	  // Assign the specification to a local variable vlSpec.
-	  var vlSpec = {
-	    "data": {
-	      "values": [
-			{% for row in queries[0].results %}
-          		{"date": "{{row[0]}}", "count": {{row[1]}}},
-       		{% endfor %}
-	      ]
-	    },
-	    "mark": "bar",
-	    "encoding": {
-	      "x": {
-	      	"field": "date", "type": "nominal",
-		    "axis": {
-		        "title": "Date"
-		     }},
-	      "y": {
-	        "field": "count", "type": "quantitative",
-	        "axis": {
-	          "title": "Record Count"
-	        }
-	      }
-	    }
-	  };
-	
-	  var embedSpec = {
-	    mode: "vega-lite",  // Instruct Vega-Embed to use the Vega-Lite compiler
-	    spec: vlSpec
-	    // You can add more vega-embed configuration properties here.
-	    // See https://github.com/vega/vega/wiki/Embed-Vega-Web-Components#configuration-propeties for more information.
-	  };
-	
-	  // Embed the visualization in the container with id `vis`
-	  vg.embed("#vis", embedSpec, function(error, result) {
-	    // Callback receiving the View instance and parsed Vega spec
-	    // result.view is the View, which resides under the '#vis' element
-	  });
-  </script>
-  
-  
-  
-  
-     <h2>Noise Data</h2>
+   <h2>4. How do I Play with My Phone?</h2>
+   <h3> 4.1. My Phone Usage </h3>
+   <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/23.embed"></iframe>
+   <h3> 4.2. Battery </h3>
+   <iframe width="600" height="550" frameborder="0" scrolling="no" src="https://plot.ly/~yingyl12/28.embed"></iframe>  
    
-   <!-- Example of Vega-lite graph -->
-   <div id="vis2"></div>
-   <!-- Vega-lite graphing code. -->
-   <script>
-	  // Assign the specification to a local variable vlSpec.
-	  var vlSpec2 = {
-	   
-	 "data": {
-	      "values": [
-			{% for row in queries[0].results %}
-          		{"date": "{{row[0]}}", "count": {{row[1]}}},
-       		{% endfor %}
-	      ]
-	    },
-	    "mark": "bar",
-	    "encoding": {
-	      "x": {
-	      	"field": "date", "type": "nominal",
-		    "axis": {
-		        "title": "Date"
-		     }},
-	      "y": {
-	        "field": "count", "type": "quantitative",
-	        "axis": {
-	          "title": "Record Count"
-	        }
-	      }
-	    }
-	   
-	  };
-	
-	  var embedSpec2 = {
-	    mode: "vega-lite",  // Instruct Vega-Embed to use the Vega-Lite compiler
-	    spec: vlSpec2
-	    // You can add more vega-embed configuration properties here.
-	    // See https://github.com/vega/vega/wiki/Embed-Vega-Web-Components#configuration-propeties for more information.
-	  };
-	
-	  // Embed the visualization in the container with id `vis`
-	  vg.embed("#vis2", embedSpec2, function(error, result) {
-	    // Callback receiving the View instance and parsed Vega spec
-	    // result.view is the View, which resides under the '#vis' element
-	  });
-  </script>
-
+   
   
-  
-  
-  
-
-   <div class="page-header">
-		<p> You should add information here, including some tables
-		and/or charts, telling the reader about the relationship
-		  between time and activity in your data.</p>
-	
-		<p> You should also add information here, including some tables
-		and/or charts, telling the reader about the relationship
-		between time and location in your data.</p>
 		
 		
     </div> <!-- /page-header -->
